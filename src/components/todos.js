@@ -8,7 +8,7 @@ class Todo extends Component {
     this.state = {
       works: localStorage.getItem("works")
         ? JSON.parse(localStorage.getItem("works"))
-        : [{ value: "study", done: true }],
+        : [],
 
       inputValue: "",
       switch: true,
@@ -150,6 +150,7 @@ class Todo extends Component {
                       <span
                         onClick={() => this.doneToggle(work)}
                         className={work.done ? "done" : ""}
+                        id="todoText"
                       >
                         {work.value}
                       </span>

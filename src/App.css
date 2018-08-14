@@ -107,7 +107,9 @@
   margin-left: 188px;
   margin-top: 30px;
 }
-
+#todoText {
+  margin-left: 8px;
+}
 .form-class {
   display: flex;
   margin-top: 20px;
