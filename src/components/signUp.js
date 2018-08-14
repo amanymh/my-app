@@ -49,32 +49,31 @@ export default class SignIn extends React.Component {
   render() {
     return (
       <form className="signIn-wrapper">
-        <h2>signup</h2>
-
+        <h2 className="signIn-h2">Sign up</h2>
         <input
-          className="form-control"
+          className="inpt ml"
           type="text"
           value={this.state.email}
           onChange={this.handleChangeEmail}
         />
         <input
-          className="form-control"
+          className="inpt ml mt"
           type="password"
           value={this.state.password}
           onChange={this.handleChangePassword}
         />
         <div>
-          <button
-            className="btn btn-primary"
+          {/* <button
+            className="btn btn-outline-success btn-sm"
             id="signUp-btn"
             type="button"
             onClick={() => this.props.toggle("signin")}
           >
             sign in
-          </button>
+          </button> */}
           <button
-            className="btn btn-primary"
-            id="signUp-btn"
+            className="addinp"
+            id="signIn-btn"
             type="button"
             onClick={this.signUp}
           >

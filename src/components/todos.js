@@ -108,28 +108,23 @@ class Todo extends Component {
     return (
       <div className="App">
         <div className="todo-wrapper">
-          <Header />
-          <form className=" disply">
+          <form className="  form-class">
             <input
-              className=" margin-20"
+              className="inpt margin-20"
               type="text"
               placeholder="Title"
               value={this.state.inputValue}
               onChange={this.handleChangeIput}
             />
             {this.state.switch && (
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={this.add}
-              >
+              <button type="button" className="addinp   mr" onClick={this.add}>
                 Add
               </button>
             )}
             {!this.state.switch && (
               <button
                 type="button"
-                className="btn btn-success"
+                className=" addinp mr"
                 onClick={this.update}
               >
                 Edit
@@ -144,34 +139,37 @@ class Todo extends Component {
               console.log(work);
               return (
                 <div>
-                  <li id="inptli" key="index">
-                    <input
-                      type="checkbox"
-                      checked={work.done}
-                      style={{ fontSize: "x-large" }}
-                    />
-                    <span
-                      onClick={() => this.doneToggle(work)}
-                      className={work.done ? "done" : ""}
-                    >
-                      {work.value}
+                  <li id="inputli" key="index">
+                    <span>
+                      <input
+                        type="checkbox"
+                        checked={work.done}
+                        onClick={() => this.doneToggle(work)}
+                        style={{ fontSize: "x-large" }}
+                      />
+                      <span
+                        onClick={() => this.doneToggle(work)}
+                        className={work.done ? "done" : ""}
+                      >
+                        {work.value}
+                      </span>
                     </span>
-
-                    <input
-                      className="removeTodo"
-                      type="button"
-                      value="x"
-                      onClick={this.delete}
-                      data-key={index}
-                    />
-
-                    <input
-                      className="removeTodo"
-                      type="button"
-                      value="Edit"
-                      onClick={this.edit}
-                      data-key={index}
-                    />
+                    <span>
+                      <input
+                        className="removeTodo"
+                        type="button"
+                        value="Edit"
+                        onClick={this.edit}
+                        data-key={index}
+                      />
+                      <input
+                        className="removeTodo"
+                        type="button"
+                        value="x"
+                        onClick={this.delete}
+                        data-key={index}
+                      />
+                    </span>
                   </li>
                 </div>
               );

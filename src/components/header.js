@@ -1,10 +1,7 @@
-import React from 'react';
+import React from "react";
 
-export default class Header extends React.Component{
-    render(){
-        return (
-            <h1>React Todoes</h1>
-        );
-        
-    }
+export default class Header extends React.Component {
+  render() {
+    return <span className="header">React Todoes</span>;
+  }
 }
