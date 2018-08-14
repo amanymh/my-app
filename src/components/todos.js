@@ -109,7 +109,7 @@ class Todo extends Component {
       <div className="App">
         <div className="todo-wrapper">
           <Header />
-          <form className="form-group disply">
+          <form className=" disply">
             <input
               className=" margin-20"
               type="text"
