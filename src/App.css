@@ -110,6 +110,15 @@
 #todoText {
   margin-left: 8px;
 }
+.text {
+  text-align: center;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.text:hover {
+  color: #65afca;
+}
 .form-class {
   display: flex;
   margin-top: 20px;

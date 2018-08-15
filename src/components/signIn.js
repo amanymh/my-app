@@ -62,6 +62,11 @@ export default class SignIn extends React.Component {
           >
             sign in
           </button>
+          <div className="text">
+            <span onClick={() => this.props.toggle("signup")}>
+              Create a New Account ..
+            </span>
+          </div>
           {/* <button
             className="btn btn-outline-success btn-sm"
             id="signUp-btn"
