@@ -14,11 +14,11 @@
   border-width: 1px;
   border-radius: 3px;
   border-style: solid;
-  padding: 8px;
+  padding: 4px 8px;
   color: #f9fafb;
   cursor: pointer;
   border-color: #65afca;
-  background-color: #65afca;
+  background-color: #2f9fc7;
 }
 
 .todo-wrapper {
@@ -41,6 +41,7 @@
   margin-right: 30px;
   border-radius: 5px;
   min-height: 300px;
+  background-color: #f7f7f7;
   border: 1px solid #65afca;
 }
 .removeTodo {
@@ -127,7 +128,7 @@
   margin-top: 10px;
 }
 .text:hover {
-  color: #65afca;
+  color: #2f9fc7;
 }
 .form-class {
   display: flex;

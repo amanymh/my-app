@@ -26,9 +26,11 @@ export default class SignIn extends React.Component {
     const loggedIn = list.filter(
       x => x.email === email && x.password === password
     );
-    console.log(loggedIn);
+
     if (loggedIn.length > 0) {
       this.props.toggle("todos");
+    } else {
+      alert("you need to register first");
     }
   };
   render() {

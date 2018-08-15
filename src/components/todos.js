@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Header from "./header";
 
 class Todo extends Component {
   constructor(props) {
