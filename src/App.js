@@ -12,7 +12,7 @@ class App extends Component {
 
     this.state = {
       works: JSON.parse(localStorage.getItem("works")),
-      view: "signin",
+      view: "todos",
       search: ""
     };
   }
@@ -28,11 +28,9 @@ class App extends Component {
 
   render() {
     const { view } = this.state;
+
     return (
       <div className="search-wrapper">
-        {/* <button type="button" onClick={() => this.toggle("todo")}>
-          toggle
-        </button> */}
         <input
           className="searchInpt"
           onChange={this.updateSearch}

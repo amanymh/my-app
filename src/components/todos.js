@@ -13,7 +13,9 @@ class Todo extends Component {
       inputValue: "",
       switch: true,
       updatedIndex: 0,
-      search: ""
+      search: "",
+      options: ["work", "sport", "fun"],
+      selectedOption: "work"
     };
   }
   handleChangeIput = e => {
@@ -29,18 +31,17 @@ class Todo extends Component {
   };
 
   add = () => {
-    // const { inputValue, works } = this.state;
-    let inputValue = this.state.inputValue;
-    let works = this.state.works;
+    let { inputValue, works, selectedOption } = this.state;
+
     if (!inputValue) {
       return;
     }
     if (localStorage.getItem("works") == null) {
-      works.push({ value: inputValue, done: false });
+      works.push({ value: inputValue, done: false, category: selectedOption });
       localStorage.setItem("works", JSON.stringify(works));
     } else {
       works = JSON.parse(localStorage.getItem("works"));
-      works.push({ value: inputValue, done: false });
+      works.push({ value: inputValue, done: false, category: selectedOption });
       localStorage.setItem("works", JSON.stringify(works));
     }
 
@@ -53,13 +54,15 @@ class Todo extends Component {
 
   edit = e => {
     var index = e.target.getAttribute("data-key");
-    let { works, inputValue, updatedIndex } = this.state;
+    let { works, inputValue, updatedIndex, selectedOption } = this.state;
     let done = this.state.works[index].done;
     inputValue = works[index].value;
+    selectedOption = works[index].category;
 
     this.setState({
       inputValue: inputValue,
-      updatedIndex: index
+      updatedIndex: index,
+      selectedOption: selectedOption
     });
 
     console.log("edit value", inputValue);
@@ -67,9 +70,9 @@ class Todo extends Component {
   };
 
   update = () => {
-    let { works, inputValue, updatedIndex } = this.state;
+    let { works, inputValue, updatedIndex, selectedOption } = this.state;
     let done = this.state.works[updatedIndex].done;
-    let editValue = { value: inputValue, done: done };
+    let editValue = { value: inputValue, done: done, category: selectedOption };
     works.splice(updatedIndex, 1, editValue);
     localStorage.setItem("works", JSON.stringify(works));
     this.setState({ works });
@@ -88,6 +91,14 @@ class Todo extends Component {
     });
     localStorage.setItem("works", JSON.stringify(list));
   };
+
+  handelOptions = e => {
+    let s = e.target.value;
+    this.setState({
+      selectedOption: e.target.value
+    });
+    console.log("selectedOption", this.state.selectedOption);
+  };
   doneToggle = work => {
     console.log(work);
     const a = this.state.works.map(x => {
@@ -103,7 +114,10 @@ class Todo extends Component {
   };
   render() {
     let filterTodoes = this.state.works.filter(x => {
-      return x.value.indexOf(this.props.search) !== -1;
+      return x.category.indexOf(this.props.search) !== -1;
+    });
+    let optionsvalue = this.state.options.map(x => {
+      return <option>{x}</option>;
     });
     return (
       <div className="App">
@@ -116,6 +130,14 @@ class Todo extends Component {
               value={this.state.inputValue}
               onChange={this.handleChangeIput}
             />
+            <select
+              value={this.state.selectedOption}
+              onChange={e => {
+                this.handelOptions(e);
+              }}
+            >
+              {optionsvalue}
+            </select>
             {this.state.switch && (
               <button type="button" className="addinp   mr" onClick={this.add}>
                 Add
@@ -153,6 +175,17 @@ class Todo extends Component {
                         id="todoText"
                       >
                         {work.value}
+                        <span
+                          className={
+                            work.category == "work"
+                              ? "blueTag"
+                              : work.category == "sport"
+                                ? "yellowTag"
+                                : "greenTag"
+                          }
+                        >
+                          {work.category}
+                        </span>
                       </span>
                     </span>
                     <span>

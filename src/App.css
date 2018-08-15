@@ -123,6 +123,18 @@
   display: flex;
   margin-top: 20px;
 }
+.yellowTag {
+  background-color: yellow;
+  color: white;
+}
+.greenTag {
+  background-color: green;
+  color: white;
+}
+.blueTag {
+  background-color: blue;
+  color: white;
+}
 .margin-20 {
   margin-left: 20px;
   margin-right: 20px;
