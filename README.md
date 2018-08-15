@@ -1,3 +1,19 @@
+instructions for running the project.
+
+1-npm install
+2-npm start
+3-you need to register first then signin
+4-you can add todos
+5- remark todo as done and remove it
+6-you can edit and update todos
+7- all your todos and your email, password stored in local storage
+8- you can search todos by tag name(work,fun.sport)
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
