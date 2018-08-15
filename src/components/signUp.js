@@ -1,9 +1,6 @@
 import React from "react";
 
 export default class SignIn extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   state = {
     email: "",
     password: "",
@@ -25,8 +22,6 @@ export default class SignIn extends React.Component {
   };
   bar = true;
   signUp = () => {
-    // this.preventD
-    const signedUp = this.signedUpate;
     let signUpValue = {
       email: this.state.email,
       password: this.state.password
@@ -43,14 +38,17 @@ export default class SignIn extends React.Component {
     this.setState({
       signUp: JSON.parse(localStorage.getItem("signUp"))
     });
-
-    this.state.email = "";
-    this.state.password = "";
+    this.setState({
+      email: "",
+      password: ""
+    });
+    // this.state.email = "";
+    // this.state.password = "";
     this.props.toggle("signin");
   };
   render() {
     return (
-      <form className="signIn-wrapper">
+      <form onSubmit={this.signUp} className="signIn-wrapper">
         <h2 className="signIn-h2">Sign up</h2>
         <div className="inputLabel">Email :</div>
         <input

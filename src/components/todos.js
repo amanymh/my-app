@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import TodoItem from "./todo";
 class Todo extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +15,8 @@ class Todo extends Component {
       updatedIndex: 0,
       search: "",
       options: ["work", "sport", "fun"],
-      selectedOption: "work"
+      selectedOption: "work",
+      doneList: []
     };
   }
   handleChangeIput = e => {
@@ -53,8 +55,8 @@ class Todo extends Component {
 
   edit = e => {
     var index = e.target.getAttribute("data-key");
-    let { works, inputValue, updatedIndex, selectedOption } = this.state;
-    let done = this.state.works[index].done;
+    let { works, inputValue, selectedOption } = this.state;
+
     inputValue = works[index].value;
     selectedOption = works[index].category;
 
@@ -65,7 +67,9 @@ class Todo extends Component {
     });
 
     console.log("edit value", inputValue);
-    this.state.switch = false;
+    this.setState({
+      switch: false
+    });
   };
 
   update = () => {
@@ -75,14 +79,16 @@ class Todo extends Component {
     works.splice(updatedIndex, 1, editValue);
     localStorage.setItem("works", JSON.stringify(works));
     this.setState({ works });
-    this.state.switch = true;
+    this.setState({
+      switch: true
+    });
     this.setState({ inputValue: "" });
     console.log("update", works[inputValue]);
   };
 
   delete = e => {
     var index = e.target.getAttribute("data-key");
-    let works = this.state.works;
+
     var list = JSON.parse(localStorage.getItem("works"));
     list.splice(index, 1);
     this.setState({
@@ -92,26 +98,25 @@ class Todo extends Component {
   };
 
   handelOptions = e => {
-    let s = e.target.value;
     this.setState({
       selectedOption: e.target.value
     });
     console.log("selectedOption", this.state.selectedOption);
   };
   doneToggle = work => {
-    console.log(work);
     const a = this.state.works.map(x => {
-      if (x.value == work.value) {
+      if (x.value === work.value) {
         x.done = !work.done;
       }
       return x;
     });
-    console.log(a);
+
     this.setState({
       works: a
     });
   };
   render() {
+    console.log(this.state.works);
     let filterTodoes = this.state.works.filter(x => {
       return x.category.indexOf(this.state.search) !== -1;
     });
@@ -146,78 +151,46 @@ class Todo extends Component {
             >
               {optionsvalue}
             </select>
-            {this.state.switch && (
-              <button type="button" className="addinp   mr" onClick={this.add}>
-                Add
-              </button>
-            )}
-            {!this.state.switch && (
-              <button
-                type="button"
-                className=" addinp mr"
-                onClick={this.update}
-              >
-                Edit
-              </button>
-            )}
+
+            <button
+              type="button"
+              className="addinp   mr"
+              onClick={this.state.switch ? this.add : this.update}
+            >
+              {this.state.switch ? "Add" : "Edit"}
+            </button>
           </form>
           <br />
           <br />
 
           <ul>
-            {filterTodoes.map(function(work, index) {
+            {filterTodoes.filter(t => t.done === false).map((work, index) => {
               console.log(work);
               return (
-                <div>
-                  <li id="inputli" key="index">
-                    <span>
-                      <input
-                        type="checkbox"
-                        checked={work.done}
-                        onClick={() => this.doneToggle(work)}
-                        style={{ fontSize: "x-large" }}
-                      />
-                      <span
-                        onClick={() => this.doneToggle(work)}
-                        className={work.done ? "done" : ""}
-                        id="todoText"
-                      >
-                        {work.value}
-                        <span
-                          className={
-                            work.category == "work"
-                              ? "blueTag"
-                              : work.category == "sport"
-                                ? "yellowTag"
-                                : "greenTag"
-                          }
-                        >
-                          {work.category}
-                        </span>
-                      </span>
-                    </span>
-                    <span>
-                      <input
-                        className="removeTodo"
-                        type="button"
-                        value="Edit"
-                        onClick={this.edit}
-                        data-key={index}
-                      />
-                      {work.done && (
-                        <input
-                          className="removeTodo"
-                          type="button"
-                          value="x"
-                          onClick={this.delete}
-                          data-key={index}
-                        />
-                      )}
-                    </span>
-                  </li>
-                </div>
+                <TodoItem
+                  work={work}
+                  doneToggle={this.doneToggle}
+                  edit={this.edit}
+                  index={index}
+                  deleteTodo={this.delete}
+                />
               );
             }, this)}
+          </ul>
+          <hr />
+          <ul>
+            {filterTodoes.filter(x => x.done === true).map((work, index) => {
+              // console.log(x);
+              return (
+                <TodoItem
+                  work={work}
+                  doneToggle={this.doneToggle}
+                  edit={this.edit}
+                  index={index}
+                  deleteTodo={this.delete}
+                />
+              );
+            })}
           </ul>
         </div>
       </div>

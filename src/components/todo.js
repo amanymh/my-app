@@ -1,23 +1,58 @@
 import React from "react";
 
-export default class Todo extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  state = {
-    done: true
-  };
+const Todo = props => {
+  const { work, doneToggle, edit, deleteTodo, index } = props;
 
-  doneToggle = () => {
-    this.setState({
-      done: !this.state.done
-    });
-  };
-  render() {
-    return (
-      <span className={this.state.done ? "done" : ""} onClick={this.doneToggle}>
-        {this.props.work}
-      </span>
-    );
-  }
-}
+  return (
+    <div>
+      <li id="inputli" key="index">
+        <span>
+          <input
+            type="checkbox"
+            checked={work.done}
+            onChange={() => doneToggle(work)}
+            style={{ fontSize: "x-large" }}
+          />
+          <span
+            onClick={() => doneToggle(work)}
+            className={work.done ? "done" : ""}
+            id="todoText"
+          >
+            {work.value}
+            <span
+              className={
+                work.category === "work"
+                  ? "blueTag"
+                  : work.category === "sport"
+                    ? "yellowTag"
+                    : "greenTag"
+              }
+            >
+              {work.category}
+            </span>
+          </span>
+        </span>
+        <span>
+          <input
+            className="removeTodo"
+            type="button"
+            value="Edit"
+            onClick={edit}
+            data-key={index}
+          />
+          {work.done && (
+            <input
+              className="removeTodo"
+              type="button"
+              value="x"
+              onClick={deleteTodo}
+              data-key={index}
+            />
+          )}
+        </span>
+      </li>
+    </div>
+  );
+};
+
+export default Todo;

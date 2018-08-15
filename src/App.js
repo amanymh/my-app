@@ -12,7 +12,7 @@ class App extends Component {
 
     this.state = {
       works: JSON.parse(localStorage.getItem("works")),
-      view: "signin"
+      view: "todos"
     };
   }
   toggle = view => {
@@ -28,9 +28,9 @@ class App extends Component {
           <span>React Todoes</span>
         </div>
 
-        {view == "todos" && <Todos />}
-        {view == "signin" && <SignIn toggle={this.toggle} />}
-        {view == "signup" && <SignUp toggle={this.toggle} />}
+        {view === "todos" && <Todos />}
+        {view === "signin" && <SignIn toggle={this.toggle} />}
+        {view === "signup" && <SignUp toggle={this.toggle} />}
       </div>
     );
   }
