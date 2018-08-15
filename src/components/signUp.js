@@ -9,7 +9,6 @@ export default class SignIn extends React.Component {
     password: "",
     signUp: []
   };
-  // signedUp = localStorage.getItem("signUp");
 
   handleChangeEmail = e => {
     console.log(this.state);
@@ -63,14 +62,6 @@ export default class SignIn extends React.Component {
           onChange={this.handleChangePassword}
         />
         <div>
-          {/* <button
-            className="btn btn-outline-success btn-sm"
-            id="signUp-btn"
-            type="button"
-            onClick={() => this.props.toggle("signin")}
-          >
-            sign in
-          </button> */}
           <button
             className="addinp"
             id="signIn-btn"

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import "./App.css";
-import Header from "./components/header";
+
 import Todos from "./components/todos";
 import SignIn from "./components/signIn";
 import SignUp from "./components/signUp";

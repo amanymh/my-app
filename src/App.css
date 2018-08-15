@@ -66,6 +66,15 @@
   padding: 5px;
   line-height: 17px;
 }
+.selestInput {
+  width: 30%;
+  border: none;
+  border-top: 1px solid #65afca;
+  border-bottom: 1px solid #65afca;
+  margin-right: 10px;
+  padding: 5px;
+  line-height: 17px;
+}
 .searchInpt {
   margin: 25px;
   width: 30%;
@@ -102,6 +111,7 @@
 .done {
   text-decoration: line-through;
   color: silver;
+  cursor: pointer;
 }
 #signIn-btn {
   margin-left: 188px;
@@ -124,16 +134,31 @@
   margin-top: 20px;
 }
 .yellowTag {
-  background-color: yellow;
+  background-color: #d0d841;
   color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 1px;
+  padding: 2px 5px;
+  margin-left: 10px;
 }
 .greenTag {
-  background-color: green;
+  background-color: #e87057;
   color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 1px;
+  padding: 2px 5px;
+  margin-left: 10px;
 }
 .blueTag {
-  background-color: blue;
+  background-color: #6b6be6;
   color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 1px;
+  padding: 2px 5px;
+  margin-left: 10px;
 }
 .margin-20 {
   margin-left: 20px;

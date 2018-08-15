@@ -131,6 +131,7 @@ class Todo extends Component {
               onChange={this.handleChangeIput}
             />
             <select
+              className="selestInput"
               value={this.state.selectedOption}
               onChange={e => {
                 this.handelOptions(e);
@@ -196,13 +197,15 @@ class Todo extends Component {
                         onClick={this.edit}
                         data-key={index}
                       />
-                      <input
-                        className="removeTodo"
-                        type="button"
-                        value="x"
-                        onClick={this.delete}
-                        data-key={index}
-                      />
+                      {work.done && (
+                        <input
+                          className="removeTodo"
+                          type="button"
+                          value="x"
+                          onClick={this.delete}
+                          data-key={index}
+                        />
+                      )}
                     </span>
                   </li>
                 </div>

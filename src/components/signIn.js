@@ -30,12 +30,6 @@ export default class SignIn extends React.Component {
     if (loggedIn.length > 0) {
       this.props.toggle("todos");
     }
-    // if (email === list[0].email && password === list[0].password) {
-    //   console.log(list[0].password, "list", password, email);
-    //   this.props.toggle();
-    // } else {
-    //   alert("You Need TO SignUp First ...");
-    // }
   };
   render() {
     return (
@@ -67,14 +61,6 @@ export default class SignIn extends React.Component {
               Create a New Account ..
             </span>
           </div>
-          {/* <button
-            className="btn btn-outline-success btn-sm"
-            id="signUp-btn"
-            type="button"
-            onClick={() => this.props.toggle("signup")}
-          >
-            Register
-          </button> */}
         </div>
       </form>
     );
