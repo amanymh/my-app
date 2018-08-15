@@ -24,19 +24,20 @@ export default class SignIn extends React.Component {
     var { email, password } = this.state;
 
     var list = JSON.parse(localStorage.getItem("signUp")) || [];
+    console.log(list);
     const loggedIn = list.filter(
       x => x.email === email && x.password === password
     );
-
+    console.log(loggedIn);
     if (loggedIn.length > 0) {
+      console.log(loggedIn);
       this.props.toggle("todos");
-    } else {
-      alert("you need to register first");
-      this.setState({
-        email: "",
-        password: ""
-      });
     }
+
+    this.setState({
+      email: "",
+      password: ""
+    });
   };
   render() {
     return (
@@ -62,7 +63,6 @@ export default class SignIn extends React.Component {
             id="signIn-btn"
             type="button"
             onClick={this.signIn}
-            // disabled={this.state.email}
           >
             sign in
           </button>

@@ -17,12 +17,15 @@ export default class SignIn extends React.Component {
     });
   };
   handleChangePassword = e => {
-    this.setState({
-      password: e.target.value
-    });
+    if (e.target.value.length > 0) {
+      this.setState({
+        password: e.target.value
+      });
+    }
   };
   bar = true;
   signUp = () => {
+    // this.preventD
     const signedUp = this.signedUpate;
     let signUpValue = {
       email: this.state.email,
@@ -52,7 +55,7 @@ export default class SignIn extends React.Component {
         <div className="inputLabel">Email :</div>
         <input
           className="inpt ml mt"
-          type="text"
+          type="email"
           value={this.state.email}
           onChange={this.handleChangeEmail}
         />
@@ -67,7 +70,7 @@ export default class SignIn extends React.Component {
           <button
             className="addinp"
             id="signIn-btn"
-            type="button"
+            type="submit"
             onClick={this.signUp}
           >
             Register
