@@ -127,6 +127,7 @@
 }
 #todoText {
   margin-left: 8px;
+  cursor: pointer;
 }
 .text {
   text-align: center;
