@@ -49,12 +49,14 @@ export default class SignIn extends React.Component {
     return (
       <form className="signIn-wrapper">
         <h2 className="signIn-h2">Sign up</h2>
+        <div className="inputLabel">Email :</div>
         <input
-          className="inpt ml"
+          className="inpt ml mt"
           type="text"
           value={this.state.email}
           onChange={this.handleChangeEmail}
         />
+        <div className="inputLabel">Password :</div>
         <input
           className="inpt ml mt"
           type="password"

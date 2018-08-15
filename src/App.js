@@ -12,18 +12,11 @@ class App extends Component {
 
     this.state = {
       works: JSON.parse(localStorage.getItem("works")),
-      view: "signin",
-      search: ""
+      view: "signin"
     };
   }
   toggle = view => {
     this.setState({ view });
-  };
-
-  updateSearch = e => {
-    this.setState({
-      search: e.target.value.substr(0, 20)
-    });
   };
 
   render() {
@@ -31,15 +24,11 @@ class App extends Component {
 
     return (
       <div className="search-wrapper">
-        <input
-          className="searchInpt"
-          onChange={this.updateSearch}
-          placeholder="search ..."
-          value={this.state.search}
-        />
-        <span className="header">React Todoes</span>
+        <div className="header">
+          <span>React Todoes</span>
+        </div>
 
-        {view == "todos" && <Todos search={this.state.search} />}
+        {view == "todos" && <Todos />}
         {view == "signin" && <SignIn toggle={this.toggle} />}
         {view == "signup" && <SignUp toggle={this.toggle} />}
       </div>

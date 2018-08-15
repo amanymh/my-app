@@ -22,7 +22,8 @@ export default class SignIn extends React.Component {
 
   signIn = () => {
     var { email, password } = this.state;
-    var list = JSON.parse(localStorage.getItem("signUp"));
+
+    var list = JSON.parse(localStorage.getItem("signUp")) || [];
     const loggedIn = list.filter(
       x => x.email === email && x.password === password
     );
@@ -31,18 +32,24 @@ export default class SignIn extends React.Component {
       this.props.toggle("todos");
     } else {
       alert("you need to register first");
+      this.setState({
+        email: "",
+        password: ""
+      });
     }
   };
   render() {
     return (
       <form className="signIn-wrapper">
         <h2 className="signIn-h2">Sign In</h2>
+        <div className="inputLabel">Email :</div>
         <input
-          className="inpt ml"
+          className="inpt ml mt"
           type="text"
           value={this.state.email}
           onChange={this.handleChangeEmail}
         />
+        <div className="inputLabel">Password :</div>
         <input
           className="inpt ml mt"
           type="password"
@@ -55,12 +62,13 @@ export default class SignIn extends React.Component {
             id="signIn-btn"
             type="button"
             onClick={this.signIn}
+            // disabled={this.state.email}
           >
             sign in
           </button>
           <div className="text">
             <span onClick={() => this.props.toggle("signup")}>
-              Create a New Account ..
+              Don't Have an account ?
             </span>
           </div>
         </div>

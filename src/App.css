@@ -3,9 +3,8 @@
 }
 .header {
   font-size: 24px;
-  margin-right: 22px;
-  margin-left: 86px;
-  margin-bottom: 30px;
+  text-align: center;
+  margin: 20px;
 }
 .addinp {
   outline: none;
@@ -35,6 +34,9 @@
   border-radius: 5px;
   box-shadow: gray;
   min-height: 450px;
+}
+.searchContainer {
+  text-align: left;
 }
 .signIn-wrapper {
   margin-left: 27px;
@@ -77,7 +79,7 @@
   line-height: 17px;
 }
 .searchInpt {
-  margin: 25px;
+  margin-left: 20px;
   width: 30%;
   border: 1px solid #65afca;
   padding: 5px;
@@ -104,10 +106,15 @@
   display: flex;
   justify-content: space-between;
 }
+.inputLabel {
+  font-size: 14px;
+  margin-top: 11px;
+  margin-left: 33px;
+}
 .signIn-h2 {
   text-align: center;
   margin-top: 14px;
-  margin-bottom: 26px;
+  margin-bottom: 8px;
 }
 .done {
   text-decoration: line-through;
@@ -172,5 +179,5 @@
   margin-left: 32px;
 }
 .mt {
-  margin-top: 20px;
+  margin-top: 5px;
 }

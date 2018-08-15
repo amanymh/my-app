@@ -113,13 +113,21 @@ class Todo extends Component {
   };
   render() {
     let filterTodoes = this.state.works.filter(x => {
-      return x.category.indexOf(this.props.search) !== -1;
+      return x.category.indexOf(this.state.search) !== -1;
     });
     let optionsvalue = this.state.options.map(x => {
       return <option>{x}</option>;
     });
     return (
       <div className="App">
+        <div className="searchContainer">
+          <input
+            className="searchInpt"
+            onChange={this.updateSearch}
+            placeholder="search ..."
+            value={this.state.search}
+          />
+        </div>
         <div className="todo-wrapper">
           <form className="  form-class">
             <input
