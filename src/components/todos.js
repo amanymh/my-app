@@ -9,7 +9,7 @@ class Todo extends Component {
       works: localStorage.getItem("works")
         ? JSON.parse(localStorage.getItem("works"))
         : [],
-
+      todoBeforeUpdate: "",
       inputValue: "",
       switch: true,
       updatedIndex: 0,
@@ -30,7 +30,7 @@ class Todo extends Component {
       search: e.target.value.substr(0, 20)
     });
   };
-
+  todoCounter = 0;
   add = () => {
     let { inputValue, works, selectedOption } = this.state;
 
@@ -38,52 +38,68 @@ class Todo extends Component {
       return;
     }
     if (localStorage.getItem("works") == null) {
-      works.push({ value: inputValue, done: false, category: selectedOption });
+      works.push({
+        id: this.todoCounter++,
+        value: inputValue,
+        done: false,
+        category: selectedOption
+      });
+      console.log(works);
       localStorage.setItem("works", JSON.stringify(works));
     } else {
       works = JSON.parse(localStorage.getItem("works"));
-      works.push({ value: inputValue, done: false, category: selectedOption });
+      works.push({
+        id: this.todoCounter++,
+        value: inputValue,
+        done: false,
+        category: selectedOption
+      });
       localStorage.setItem("works", JSON.stringify(works));
     }
 
     this.setState({
       works: JSON.parse(localStorage.getItem("works"))
     });
-    console.log(this.state);
+
     this.setState({ inputValue: "" });
   };
 
-  edit = e => {
-    var index = e.target.getAttribute("data-key");
-    let { works, inputValue, selectedOption } = this.state;
+  edit = work => {
+    // this.setState({ inputValue: work.value });
 
-    inputValue = works[index].value;
-    selectedOption = works[index].category;
+    // var index = e.target.getAttribute("data-key");
+    // let { works, inputValue, selectedOption } = this.state;
+
+    // inputValue = works[index].value;
+    // selectedOption = works[index].category;
 
     this.setState({
-      inputValue: inputValue,
-      updatedIndex: index,
-      selectedOption: selectedOption
-    });
-
-    console.log("edit value", inputValue);
-    this.setState({
+      todoBeforeUpdate: work,
+      inputValue: work.value,
+      // updatedIndex: index,
+      // selectedOption: selectedOption,
+      // works: a,
       switch: false
     });
   };
 
   update = () => {
-    let { works, inputValue, updatedIndex, selectedOption } = this.state;
-    let done = this.state.works[updatedIndex].done;
-    let editValue = { value: inputValue, done: done, category: selectedOption };
-    works.splice(updatedIndex, 1, editValue);
-    localStorage.setItem("works", JSON.stringify(works));
-    this.setState({ works });
-    this.setState({
-      switch: true
+    // console.log(work);
+    const todos = [...this.state.works];
+    const oldTodoValue = Object.assign({}, this.state.todoBeforeUpdate);
+    const todofilteredIndex = todos.findIndex(x => {
+      return x.id === oldTodoValue.id;
     });
-    this.setState({ inputValue: "" });
-    console.log("update", works[inputValue]);
+    todos[todofilteredIndex].value = this.state.inputValue;
+
+    this.setState({
+      works: todos,
+      switch: true,
+      inputValue: "",
+      todoBeforeUpdate: ""
+    });
+
+    localStorage.setItem("works", JSON.stringify(this.state.works));
   };
 
   delete = e => {
@@ -101,7 +117,6 @@ class Todo extends Component {
     this.setState({
       selectedOption: e.target.value
     });
-    console.log("selectedOption", this.state.selectedOption);
   };
   doneToggle = work => {
     const a = this.state.works.map(x => {
@@ -116,12 +131,11 @@ class Todo extends Component {
     });
   };
   render() {
-    console.log(this.state.works);
     let filterTodoes = this.state.works.filter(x => {
       return x.category.indexOf(this.state.search) !== -1;
     });
     let optionsvalue = this.state.options.map(x => {
-      return <option>{x}</option>;
+      return <option key={x.value}>{x}</option>;
     });
     return (
       <div className="App">
@@ -162,10 +176,9 @@ class Todo extends Component {
           </form>
           <br />
           <br />
-
+          <h4 className="txt-left">To Do</h4>
           <ul>
             {filterTodoes.filter(t => t.done === false).map((work, index) => {
-              console.log(work);
               return (
                 <TodoItem
                   work={work}
@@ -178,9 +191,9 @@ class Todo extends Component {
             }, this)}
           </ul>
           <hr />
+          <h4 className="txt-left"> Done</h4>
           <ul>
             {filterTodoes.filter(x => x.done === true).map((work, index) => {
-              // console.log(x);
               return (
                 <TodoItem
                   work={work}

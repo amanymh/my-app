@@ -12,7 +12,7 @@ class App extends Component {
 
     this.state = {
       works: JSON.parse(localStorage.getItem("works")),
-      view: "todos"
+      view: "signin"
     };
   }
   toggle = view => {

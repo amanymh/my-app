@@ -8,7 +8,6 @@ export default class SignIn extends React.Component {
   };
 
   handleChangeEmail = e => {
-    console.log(this.state);
     this.setState({
       email: e.target.value
     });

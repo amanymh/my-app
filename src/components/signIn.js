@@ -21,13 +21,12 @@ export default class SignIn extends React.Component {
     var { email, password } = this.state;
 
     var list = JSON.parse(localStorage.getItem("signUp")) || [];
-    console.log(list);
+
     const loggedIn = list.filter(
       x => x.email === email && x.password === password
     );
-    console.log(loggedIn);
+
     if (loggedIn.length > 0) {
-      console.log(loggedIn);
       this.props.toggle("todos");
     }
 

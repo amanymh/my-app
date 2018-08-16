@@ -125,6 +125,10 @@
   margin-left: 188px;
   margin-top: 30px;
 }
+.txt-left {
+  text-align: left;
+  margin-left: 40px;
+}
 #todoText {
   margin-left: 8px;
   cursor: pointer;

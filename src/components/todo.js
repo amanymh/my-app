@@ -37,7 +37,7 @@ const Todo = props => {
             className="removeTodo"
             type="button"
             value="Edit"
-            onClick={edit}
+            onClick={() => edit(work)}
             data-key={index}
           />
           {work.done && (
